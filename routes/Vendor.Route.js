@@ -1,6 +1,6 @@
 import express from "express";
 import {create, gets, update, deletes
-} from "../controllers/VendorCatagory.Controller.js";
+} from "../controllers/Vendor.Controller.js";
 
 const router = express.Router();
 

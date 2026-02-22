@@ -21,7 +21,7 @@ export const createSerialNumber = async (req, res) => {
 export const getSerialNumbers = async (req, res) => {
   try {
     const serials = await SerialNumber.find().sort({ createdAt: -1 });
-
+    
     res.status(200).json(serials);
   } catch (error) {
     res.status(500).json({
@@ -35,12 +35,8 @@ export const getSerialNumbers = async (req, res) => {
 export const updateSerialNumber = async (req, res) => {
   try {
     const { id } = req.params;
-    const { prefix, startNumber, currentNumber } = req.body;
-    const serial = await SerialNumber.findByIdAndUpdate(
-      id,
-      { prefix, startNumber, currentNumber },
-      { new: true }
-    );
+    const newData = new SerialNumber(req.body);
+    const serial = await SerialNumber.findByIdAndUpdate(id,newData,{ new: true } );
     if (!serial) {
       res.status(404).json({
         success: false,

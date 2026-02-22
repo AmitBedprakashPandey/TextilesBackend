@@ -1,8 +1,10 @@
-import Model from "../model/venderCatagory.Model.js";
+import Model from "../model/vender.Model.js";
 
 export const create = async (req, res) => {
     try {
+        
         const newData = new Model(req.body);
+        
         const datas = await Model.create(newData);
         res.status(201).json(datas);
     } catch (error) {

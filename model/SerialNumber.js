@@ -6,16 +6,23 @@ const modelSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      unique: true,
     },
     startNumber: {
-      type: Number,
+      type: String,
       required: true,
       min: 1,
     },
     currentNumber: {
-      type: Number,
+      type: String,
       required: true,
     },
+    companyid: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Company",
+      required: true,
+      unique: true,
+  },
   },
   { timestamps: true }
 );
