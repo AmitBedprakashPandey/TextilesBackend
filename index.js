@@ -13,6 +13,7 @@ import areaRoutes from "./routes/Area.Router.js";
 import cityRoutes from "./routes/City.Router.js";
 import venderRoutes from "./routes/Vendor.Route.js"
 import companyRoutes from "./routes/Company.routes.js";
+import FabricCustomerRoutes from "./routes/FabricCustomer.Router.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -27,6 +28,7 @@ app.use("/api/serial", serialNumberRoutes);
 app.use("/api/unit", unitRoutes);
 app.use("/api/area", areaRoutes);
 app.use("/api/city", cityRoutes);
+app.use("/api/fabriccustomer", FabricCustomerRoutes);
 app.use("/api/vendor", venderRoutes);
 
 app.get("/", (req, res) => {
