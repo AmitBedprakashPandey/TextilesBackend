@@ -16,6 +16,30 @@ export const create = async (req, res) => {
   }
 };
 
+export const getById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = await Model.findById(id).populate("company").populate("vendor");
+    if (!data) {
+      res.status(404).json({
+        success: false,
+        message: "Serial not found",
+      });
+    }
+
+
+
+    res.status(200).json(data);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+    
+
 // Get all datas numbers
 export const gets = async (req, res) => {
   try {

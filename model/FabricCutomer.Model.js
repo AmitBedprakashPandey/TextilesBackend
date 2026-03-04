@@ -40,12 +40,12 @@ const PurchaseSchema = new mongoose.Schema(
   {
     company: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Company",
+      ref: "company",
       required: true,
     },
     vendor: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Vendor",
+      ref: "vendor",
       required: true,
     },
     date: {
