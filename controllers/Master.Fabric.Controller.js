@@ -1,9 +1,9 @@
-import Model from "../model/FabricCutomer.Model.js";
+import Model from "../model/Master.Fabric.Model.js";
 
 export const create = async (req, res) => {
   try {
-      
     const newData = new Model(req.body);
+
     const datas = await Model.create(newData);
     res.status(201).json(datas);
   } catch (error) {
@@ -16,37 +16,11 @@ export const create = async (req, res) => {
   }
 };
 
-export const getById = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const data = await Model.findById(id).populate("company").populate("vendor").populate("groups.pattern");
-
-    if (!data) {
-      res.status(404).json({
-        success: false,
-        message: "Serial not found",
-      });
-    }
-
-    res.status(200).json(data);
-  
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-  }
-};
-    
-
 // Get all datas numbers
 export const gets = async (req, res) => {
   try {
-
-    const data = await Model.find().populate("company").populate("vendor").populate("groups.pattern");
+    const data = await Model.find();
     res.status(200).json(data);
-
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -55,16 +29,12 @@ export const gets = async (req, res) => {
   }
 };
 
-// update datas number all details 
+// update datas number all details
 export const update = async (req, res) => {
   try {
     const { id } = req.params;
     const newData = new Model(req.body);
-    const datas = await Model.findByIdAndUpdate(
-      id,
-      newData,
-      { new: true }
-    );
+    const datas = await Model.findByIdAndUpdate(id, newData, { new: true });
     if (!datas) {
       res.status(404).json({
         success: false,
@@ -79,7 +49,6 @@ export const update = async (req, res) => {
     });
   }
 };
-
 
 // Delete datas
 export const deletes = async (req, res) => {

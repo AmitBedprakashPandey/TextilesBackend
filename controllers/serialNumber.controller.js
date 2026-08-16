@@ -3,7 +3,6 @@ import SerialNumber from "../model/SerialNumber.js";
 // Create serial number
 export const createSerialNumber = async (req, res) => {
   try {
-
     const newData = new SerialNumber(req.body);
 
     const serial = await SerialNumber.create(newData);
@@ -21,7 +20,7 @@ export const createSerialNumber = async (req, res) => {
 export const getSerialNumbers = async (req, res) => {
   try {
     const serials = await SerialNumber.find().sort({ createdAt: -1 });
-    
+
     res.status(200).json(serials);
   } catch (error) {
     res.status(500).json({
@@ -31,12 +30,26 @@ export const getSerialNumbers = async (req, res) => {
   }
 };
 
-// update serial number all details 
+export const getSerialNumberById = async (req, res) => {
+  try {
+    const oneSerialNumber = await SerialNumber.findById(req.params.id);
+    res.status(200).json(oneSerialNumber);
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+// update serial number all details
 export const updateSerialNumber = async (req, res) => {
   try {
     const { id } = req.params;
     const newData = new SerialNumber(req.body);
-    const serial = await SerialNumber.findByIdAndUpdate(id,newData,{ new: true } );
+    const serial = await SerialNumber.findByIdAndUpdate(id, newData, {
+      new: true,
+    });
     if (!serial) {
       res.status(404).json({
         success: false,
@@ -61,7 +74,7 @@ export const updateCurrentNumber = async (req, res) => {
     const serial = await SerialNumber.findByIdAndUpdate(
       id,
       { currentNumber },
-      { new: true }
+      { new: true },
     );
 
     if (!serial) {

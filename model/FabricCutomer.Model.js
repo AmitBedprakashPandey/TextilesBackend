@@ -7,8 +7,9 @@ const MeterGroupSchema = new mongoose.Schema(
       required: true,
     },
     pattern: {
-      type: String,
-      trim: true,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "fabricname",
+      required: true,
     },
     rate: {
       type: Number,

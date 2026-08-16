@@ -14,9 +14,24 @@ const modelSchema = new mongoose.Schema(
         
         gstin: {
             type: String,
+            unique:true,
         },
         pan: {
             type: String,
+            unique:true,
+        },
+        phone: {
+            type: String,
+            unique:true,
+        },
+        email: {
+            type: String,
+            unique:true,
+        },
+        mobile: {
+            type: String,
+            unique:true,unique:true,
+
         },
         state: {
             type: String,
